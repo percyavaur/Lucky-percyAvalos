@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { PersonalClass } from "src/app/classes/personal.class";
 import { ShowHijoComponent } from "src/app/hijo/components/show-hijo/show-hijo.component";
@@ -24,15 +25,16 @@ export class PersonalTableComponent implements OnInit {
   @Output() selectPersonalEvent = new EventEmitter<PersonalClass>();
 
   displayedColumns: string[] = [
-    "IdPersonal",
-    "Nombre Completo",
-    "FchNac",
-    "FchIngreso",
+    "idPersonal",
+    "nombreCompleto",
+    "fchNac",
+    "fchIngreso",
     "Acciones",
   ];
 
   dataSource = new MatTableDataSource<PersonalClass>([]);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   showHijo_dialog: MatDialogRef<ShowHijoComponent>;
 
@@ -44,6 +46,7 @@ export class PersonalTableComponent implements OnInit {
   ngOnInit() {
     this.getAllPersonal();
     this.dataSource = new MatTableDataSource<PersonalClass>([]);
+    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
@@ -51,6 +54,7 @@ export class PersonalTableComponent implements OnInit {
     this.personalService.getAllPersonal().subscribe(
       (res) => {
         this.dataSource = new MatTableDataSource<PersonalClass>(res);
+        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
       (err) => {
@@ -73,6 +77,7 @@ export class PersonalTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource<PersonalClass>(
       this.filterDatasource
     );
+    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 }

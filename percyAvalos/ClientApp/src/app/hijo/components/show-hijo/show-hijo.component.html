@@ -136,14 +136,33 @@
 </form>
 <mat-card>
   <div class="table-responsive">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
-      <ng-container matColumnDef="IdPersonal">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center">ID</th>
+    <table
+      mat-table
+      matSort
+      [dataSource]="dataSource"
+      class="mat-elevation-z8 w-100"
+    >
+      <ng-container matColumnDef="idDerhab">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          style="text-align: center"
+          id="idDerhab"
+        >
+          ID
+        </th>
         <td mat-cell *matCellDef="let element">{{ element.idDerhab }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="Nombre Completo">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+      <ng-container matColumnDef="nombreCompleto">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          style="text-align: center"
+          id="nombreCompleto"
+        >
           Nombre Completo
         </th>
         <td mat-cell *matCellDef="let element">
@@ -151,8 +170,14 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="FchNac">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+      <ng-container matColumnDef="fchNac">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          style="text-align: center"
+          id="fchNac"
+        >
           Fecha nacimiento
         </th>
         <td mat-cell *matCellDef="let element">
@@ -161,7 +186,12 @@
       </ng-container>
 
       <ng-container matColumnDef="Acciones">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          style="text-align: center"
+          id="acciones"
+        >
           Acciones
         </th>
         <td mat-cell *matCellDef="let element">

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { hijoClass } from "src/app/classes/hijo.class";
 import { HijoService } from "src/app/services/hijo.service";
@@ -23,14 +24,15 @@ export class ShowHijoComponent implements OnInit {
   val_FchNac: Date;
 
   displayedColumns: string[] = [
-    "IdPersonal",
-    "Nombre Completo",
-    "FchNac",
+    "idDerhab",
+    "nombreCompleto",
+    "fchNac",
     "Acciones",
   ];
 
   dataSource = new MatTableDataSource<hijoClass>([]);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     public createPersonalDialog: MatDialogRef<ShowHijoComponent>,

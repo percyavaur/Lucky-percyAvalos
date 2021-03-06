@@ -38,6 +38,10 @@ th {
   align-items: center;
 }
 
-form{
+form {
   font-size: 14px;
+}
+
+:host ::ng-deep .mat-sort-header-container {
+  justify-content: center;
 }

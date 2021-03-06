@@ -24,3 +24,7 @@ th {
 .separator::after {
   margin-left: 0.25em;
 }
+
+:host ::ng-deep .mat-sort-header-container {
+  justify-content: center;
+}
