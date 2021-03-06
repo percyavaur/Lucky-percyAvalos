@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { PersonalClass } from "src/app/classes/personal.class";
 import { PersonalService } from "src/app/services/personal.service";
 import Swal from "sweetalert2";
 
@@ -9,6 +10,7 @@ import Swal from "sweetalert2";
 })
 export class PersonalFileComponent implements OnInit {
   @Input() selectedPersonal;
+  @Output() updateDataSource = new EventEmitter<any>();
 
   loading: boolean = false;
 
@@ -25,23 +27,28 @@ export class PersonalFileComponent implements OnInit {
   ngOnInit() {}
 
   updatePersonal(personalForm) {
-    let payload = {
-      IdPersonal: this.val_IdPersonal,
-      Nombre1: this.val_Nombre1,
-      nombre2: this.val_Nombre2,
-      apPaterno: this.val_ApPaterno,
-      apMaterno: this.val_ApMaterno,
-      fchNac: this.val_FchNac,
-      fchIngreso: this.val_FchIngreso,
-    };
-    this.personalService.updatePersonal(this.val_IdPersonal, payload).subscribe(
-      (res) => {
-        Swal.fire("Actualización completa", "", "success");
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    if (personalForm.valid) {
+      let payload = {
+        IdPersonal: this.val_IdPersonal,
+        Nombre1: this.val_Nombre1,
+        Nombre2: this.val_Nombre2,
+        ApPaterno: this.val_ApPaterno,
+        ApMaterno: this.val_ApMaterno,
+        FchNac: this.val_FchNac,
+        FchIngreso: this.val_FchIngreso,
+      };
+      this.personalService
+        .updatePersonal(this.val_IdPersonal, payload)
+        .subscribe(
+          (res) => {
+            Swal.fire("Actualización completa", "", "success");
+            this.updateDataSource.emit(payload);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+    }
   }
 
   ngOnChanges(): void {

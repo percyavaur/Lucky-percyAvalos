@@ -39,28 +39,13 @@ export class PersonalTableComponent implements OnInit {
   showHijo_dialog: MatDialogRef<ShowHijoComponent>;
 
   constructor(
-    private personalService: PersonalService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    this.getAllPersonal();
     this.dataSource = new MatTableDataSource<PersonalClass>([]);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-  }
-
-  getAllPersonal() {
-    this.personalService.getAllPersonal().subscribe(
-      (res) => {
-        this.dataSource = new MatTableDataSource<PersonalClass>(res);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
   }
 
   setSelectPersonal(personal: PersonalClass) {

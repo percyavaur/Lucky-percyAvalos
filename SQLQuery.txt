@@ -62,7 +62,8 @@ begin
    set ApPaterno=@ApPaterno,        
    ApMaterno=@ApMaterno,        
    Nombre1=@Nombre1,      
-   Nombre2=@Nombre2,      
+   Nombre2=@Nombre2,
+   NombreCompleto = CONCAT(@Nombre1,' ',@Nombre2,' ',@ApPaterno,' ',@ApMaterno),      
    FchNac=@FchNac,      
    FchIngreso=@FchIngreso        
    where IdPersonal=@IdPersonal        
@@ -184,7 +185,8 @@ begin
    ApPaterno=@ApPaterno,        
    ApMaterno=@ApMaterno,        
    Nombre1=@Nombre1,      
-   Nombre2=@Nombre2,      
+   Nombre2=@Nombre2,   
+   NombreCompleto = CONCAT(@Nombre1,' ',@Nombre2,' ',@ApPaterno,' ',@ApMaterno),   
    FchNac=@FchNac      
    where IdDerhab=@IdDerhab        
 End  

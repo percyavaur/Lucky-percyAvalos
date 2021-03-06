@@ -5,4 +5,7 @@
   [filterDatasource]="filteredPersonal"
   (selectPersonalEvent)="setSelectedPersonal($event)"
 ></app-personal-table>
-<app-personal-file [selectedPersonal]="selectedPersonal"></app-personal-file>
+<app-personal-file
+  [selectedPersonal]="selectedPersonal"
+  (updateDataSource)="updateFilteredPersonal($event)"
+></app-personal-file>
