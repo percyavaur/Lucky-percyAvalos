@@ -1,0 +1,8 @@
+<app-personal-filter
+  (filterPersonal)="setFilteredPersonal($event)"
+></app-personal-filter>
+<app-personal-table
+  [filterDatasource]="filteredPersonal"
+  (selectPersonalEvent)="setSelectedPersonal($event)"
+></app-personal-table>
+<app-personal-file [selectedPersonal]="selectedPersonal"></app-personal-file>

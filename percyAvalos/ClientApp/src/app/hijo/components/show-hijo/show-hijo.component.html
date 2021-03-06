@@ -1,0 +1,188 @@
+<nav class="navbar navbar-light bg-light mb-2">
+  <div style="text-align: start; font-weight: 700">
+    Hijos de {{ personal.nombreCompleto | uppercase }}
+  </div>
+</nav>
+<div class="horizontal-center" *ngIf="!showForm">
+  <button
+    class="m-2"
+    mat-raised-button
+    color="primary"
+    type="button"
+    style="width: 200px"
+    [disabled]="loading"
+    (click)="setShowForm()"
+  >
+    <mat-icon>add</mat-icon>
+    Agregar hijo
+  </button>
+</div>
+<form
+  action=""
+  *ngIf="showForm"
+  class="mt-2 mb-2"
+  #hijoForm="ngForm"
+  (ngSubmit)="addHijo(hijoForm)"
+>
+  <mat-card>
+    <mat-progress-bar
+      class="mb-3 mt-2"
+      mode="indeterminate"
+      *ngIf="loading"
+    ></mat-progress-bar>
+    <div class="row">
+      <div class="separator">Añadir hijo</div>
+      <mat-form-field class="col-md-6">
+        <mat-label>Primer nombre</mat-label>
+        <input
+          matInput
+          name="nombre1"
+          type="input"
+          [disabled]="loading"
+          [(ngModel)]="val_Nombre1"
+          required
+        />
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="col-md-6">
+        <mat-label>Segundo nombre</mat-label>
+        <input
+          matInput
+          name="nombre2"
+          type="input"
+          [disabled]="loading"
+          [(ngModel)]="val_Nombre2"
+          required
+        />
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-md-6">
+        <mat-label>Apellido paterno</mat-label>
+        <input
+          matInput
+          name="ApPaterno"
+          type="input"
+          [disabled]="loading"
+          [(ngModel)]="val_ApPaterno"
+          required
+        />
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="col-md-6">
+        <mat-label>Apellido materno</mat-label>
+        <input
+          matInput
+          name="ApMaterno"
+          type="input"
+          [disabled]="loading"
+          [(ngModel)]="val_ApMaterno"
+          required
+        />
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="fill" class="col-md-6">
+        <mat-label>Fecha nacimiento</mat-label>
+        <input
+          matInput
+          [matDatepicker]="fchNac"
+          [disabled]="loading"
+          [(ngModel)]="val_FchNac"
+          name="fchNac"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="fchNac"></mat-datepicker-toggle>
+        <mat-datepicker #fchNac></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="row horizontal-center">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        style="width: 140px; margin: 10px"
+        [disabled]="!hijoForm.valid || loading"
+      >
+        <mat-icon>save</mat-icon>Guardar
+        <mat-spinner
+          matSuffix
+          [diameter]="18"
+          style="float: right; margin-left: 8px; margin-top: 9px"
+          *ngIf="loading"
+        ></mat-spinner>
+      </button>
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        style="width: 140px; background-color: #f44336; margin: 10px"
+        [disabled]="loading"
+        (click)="setShowForm()"
+      >
+        <mat-icon>cancel</mat-icon>Cancelar
+        <mat-spinner
+          matSuffix
+          [diameter]="18"
+          style="float: right; margin-left: 8px; margin-top: 9px"
+          *ngIf="loading"
+        ></mat-spinner>
+      </button>
+    </div>
+  </mat-card>
+</form>
+<mat-card>
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+      <ng-container matColumnDef="IdPersonal">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.idDerhab }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Nombre Completo">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Nombre Completo
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.nombreCompleto }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="FchNac">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Fecha nacimiento
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.fchNac | date: "dd-MM-yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Acciones">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Acciones
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-button
+            title="Eliminar"
+            (click)="deleteHijo(element.idDerhab)"
+          >
+            <mat-icon style="color: red">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</mat-card>
+
+<mat-paginator
+  style="white-space: nowrap"
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+></mat-paginator>

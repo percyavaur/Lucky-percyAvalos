@@ -1,0 +1,116 @@
+<mat-card *ngIf="selectedPersonal">
+  <div class="separator">Personal</div>
+
+  <mat-progress-bar
+    class="mb-3 mt-2"
+    mode="indeterminate"
+    *ngIf="loading"
+  ></mat-progress-bar>
+  <div class="w-100">
+    <form
+      action=""
+      #personalForm="ngForm"
+      (ngSubmit)="updatePersonal(personalForm)"
+    >
+      <div class="row">
+        <mat-form-field class="col-md-3">
+          <mat-label>Primer nombre</mat-label>
+          <input
+            matInput
+            name="nombre1"
+            type="input"
+            [disabled]="loading"
+            [(ngModel)]="val_Nombre1"
+            required
+          />
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <mat-label>Segundo nombre</mat-label>
+          <input
+            matInput
+            name="nombre2"
+            type="input"
+            [disabled]="loading"
+            [(ngModel)]="val_Nombre2"
+            required
+          />
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <mat-label>Apellido paterno</mat-label>
+          <input
+            matInput
+            name="ApPaterno"
+            type="input"
+            [disabled]="loading"
+            [(ngModel)]="val_ApPaterno"
+            required
+          />
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <mat-label>Apellido materno</mat-label>
+          <input
+            matInput
+            name="ApMaterno"
+            type="input"
+            [disabled]="loading"
+            [(ngModel)]="val_ApMaterno"
+            required
+          />
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col-md-3">
+          <mat-label>Fecha nacimiento</mat-label>
+          <input
+            matInput
+            [matDatepicker]="fchNac"
+            [disabled]="loading"
+            [(ngModel)]="val_FchNac"
+            name="fchNac"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="fchNac"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #fchNac></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col-md-3">
+          <mat-label>Fecha ingreso</mat-label>
+          <input
+            matInput
+            [matDatepicker]="fchIngreso"
+            [disabled]="loading"
+            [(ngModel)]="val_FchIngreso"
+            name="fchIngreso"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="fchIngreso"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #fchIngreso></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="row horizontal-center">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          style="width: 150px"
+          [disabled]="!personalForm.valid || loading"
+        >
+          <mat-icon>save</mat-icon>Guardar
+          <mat-spinner
+            matSuffix
+            [diameter]="18"
+            style="float: right; margin-left: 8px; margin-top: 9px"
+            *ngIf="loading"
+          ></mat-spinner>
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-card>

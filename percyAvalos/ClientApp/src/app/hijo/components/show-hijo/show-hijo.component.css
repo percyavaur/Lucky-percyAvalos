@@ -1,0 +1,43 @@
+td {
+  white-space: nowrap;
+  text-align: center;
+  padding: 10px;
+}
+th {
+  white-space: nowrap;
+  text-align: center;
+}
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: rgb(122, 122, 122);
+}
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.separator::before {
+  margin-right: 0.25em;
+}
+.separator::after {
+  margin-left: 0.25em;
+}
+
+.horizontal-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+:host ::ng-deep .vertical-center {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+form{
+  font-size: 14px;
+}

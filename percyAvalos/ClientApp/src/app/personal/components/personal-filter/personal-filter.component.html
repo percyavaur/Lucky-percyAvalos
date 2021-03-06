@@ -1,0 +1,90 @@
+<form action="" (ngSubmit)="getFilteredPersonal()">
+  <div class="row mt-2 mb-2">
+    <mat-card class="col-md-9" style="font-size: 14px">
+      <mat-progress-bar
+        class="mb-3 mt-2"
+        mode="indeterminate"
+        *ngIf="loading"
+      ></mat-progress-bar>
+      <div class="row">
+        <div class="separator">Filtro</div>
+        <mat-form-field class="col-md-3">
+          <mat-label>Primer nombre</mat-label>
+          <input
+            matInput
+            name="nombre1"
+            type="input"
+            [disabled]="loading"
+            [(ngModel)]="val_Nombre1"
+          />
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <mat-label>Segundo nombre</mat-label>
+          <input
+            matInput
+            name="nombre2"
+            type="input"
+            [disabled]="loading"
+            [(ngModel)]="val_Nombre2"
+          />
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>Apellido paterno</mat-label>
+          <input
+            matInput
+            name="ApPaterno"
+            type="input"
+            [disabled]="loading"
+            [(ngModel)]="val_ApPaterno"
+          />
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <mat-label>Apellido materno</mat-label>
+          <input
+            matInput
+            name="ApMaterno"
+            type="input"
+            [disabled]="loading"
+            [(ngModel)]="val_ApMaterno"
+          />
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-card>
+    <div class="col-md-3">
+      <div class="vertical-center horizontal-center m-2 d-flex flex-column">
+        <button
+          class="m-2"
+          mat-raised-button
+          type="submit"
+          [disabled]="loading"
+        >
+          <mat-icon>search</mat-icon>
+          Buscar
+
+          <mat-spinner
+            matSuffix
+            [diameter]="18"
+            style="float: right; margin-left: 8px; margin-top: 9px"
+            *ngIf="loading"
+          ></mat-spinner>
+        </button>
+        <button
+          class="m-2"
+          mat-raised-button
+          (click)="openDialog()"
+          color="primary"
+          type="button"
+          [disabled]="loading"
+        >
+          <mat-icon>add</mat-icon>
+          Agregar personal
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

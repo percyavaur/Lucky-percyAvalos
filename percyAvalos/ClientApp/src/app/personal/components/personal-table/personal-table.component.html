@@ -1,0 +1,67 @@
+<mat-card>
+  <div class="separator">Tabla personal</div>
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+      <ng-container matColumnDef="IdPersonal">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.idPersonal }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Nombre Completo">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Nombre Completo
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.nombreCompleto }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="FchNac">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Fecha nacimiento
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.fchNac | date: "dd-MM-yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="FchIngreso">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Fecha ingreso
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.fchIngreso | date: "dd-MM-yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Acciones">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Acciones
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-button
+            title="Editar personal"
+            (click)="setSelectPersonal(element)"
+          >
+            <mat-icon color="primary">edit</mat-icon>
+          </button>
+          <button
+            mat-button
+            title="Ver hijos"
+            (click)="openShowHijoDialog(element)"
+          >
+            <mat-icon color="accent">remove_red_eye</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</mat-card>
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+></mat-paginator>
