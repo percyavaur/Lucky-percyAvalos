@@ -9,7 +9,7 @@ import { catchError } from "rxjs/operators";
 export class HijoService {
   baseUrl: string;
   constructor(private http: HttpClient) {
-    this.baseUrl = "http://localhost:14509/api/hijo";
+    this.baseUrl = "http://localhost:4300/api/hijo";
   }
 
   getHijoByPersonal(IdPersonal): Observable<any> {

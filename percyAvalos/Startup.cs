@@ -22,6 +22,7 @@ namespace percyAvalos
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
+                services.AddHealthChecks();
                 configuration.RootPath = "ClientApp/dist";
             });
         }
@@ -45,13 +46,6 @@ namespace percyAvalos
             }
 
             app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
-            });
 
             app.UseSpa(spa =>
             {

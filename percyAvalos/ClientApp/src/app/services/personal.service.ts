@@ -9,7 +9,7 @@ import { catchError } from "rxjs/operators";
 export class PersonalService {
   baseUrl: string;
   constructor(private http: HttpClient) {
-    this.baseUrl = "http://localhost:14509/api/personal";
+    this.baseUrl = "http://localhost:4300/api/personal";
   }
 
   getAllPersonal(): Observable<any> {
